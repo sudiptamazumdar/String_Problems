@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 int lastIndex(string s) {
     int lastIndex = -1;  
    
@@ -9,19 +12,14 @@ int lastIndex(string s) {
    }
    
    return lastIndex;
+}
 
-   int main() {
+int main() {
     string s;
     cout << "Enter a number string: ";
     cin >> s;
 
-    string result = lastIndex(s);
+    int result = lastIndex(s);
     
-    if (!result.empty()) {
-        cout << "Largest odd integer substring: " << result << endl;
-    } else {
-        cout << "No odd integer found." << endl;
-    }
-
-    return 0;
+    cout << result;
 }
