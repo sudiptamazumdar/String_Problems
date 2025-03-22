@@ -1,32 +1,44 @@
-/*Write a function to find the longest common prefix string amongst an array of strings.
-
-If there is no common prefix, return an empty string "".*/
-
-#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+#include <algorithm>
 using namespace std;
 
-string longestCommonPrefix(vector <string> &str)
-{
-    if (str.empty())
-        return "";
+class Solution {
+public:
+    string longestCommonPrefix(vector<string>& arr) {
+        int n = arr.size();
+        if (n == 0) return "";
 
-    string prefix = str[0];
-    for (int i = 1; i < str.size(); i++)
-    {
-        while (str[i].find(prefix) != 0)
-        {
-            prefix = prefix.substr(0, prefix.length() - 1);
-            if (prefix.empty())
-                return "";
+        // Step 1: Sort the array lexicographically
+        sort(arr.begin(), arr.end());
+
+        // Step 2: Compare the first and last strings
+        string first = arr[0];
+        string last = arr[n - 1];
+        int i = 0;
+
+        // Step 3: Find the common prefix between the first and last string
+        while (i < first.size() && i < last.size() && first[i] == last[i]) {
+            i++;
         }
-    }
-    return prefix;
-}
-int main() {
-    vector<string> strs = {"flower", "flow", "flight"};
 
-    string result = longestCommonPrefix(strs);
-    cout << "Longest common prefix: " << result << endl;
+        // Return the common prefix
+        return first.substr(0, i);
+    }
+};
+
+int main() {
+    vector<string> arr = {"geeksforgeeks", "geeks", "geek", "geezer"};
+    
+    Solution sol;
+    string result = sol.longestCommonPrefix(arr);
+
+    // Output result
+    if (result.empty()) {
+        cout << "No common prefix found!" << endl;
+    } else {
+        cout << "Longest Common Prefix: " << result << endl;
+    }
 
     return 0;
 }
